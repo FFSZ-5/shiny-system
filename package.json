@@ -1,0 +1,20 @@
+{
+  "name": "learn",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "learn something from work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FFSZ-5/shiny-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FFSZ-5/shiny-system/issues"
+  },
+  "homepage": "https://github.com/FFSZ-5/shiny-system#readme"
+}
