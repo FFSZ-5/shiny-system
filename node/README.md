@@ -2,7 +2,7 @@
  * @Author: ffsz-5 651828515@qq.com
  * @Date: 2024-03-31 22:22:05
  * @LastEditors: 刘范思哲 651828515@qq.com
- * @LastEditTime: 2024-04-16 23:03:35
+ * @LastEditTime: 2024-05-12 22:30:20
  * @FilePath: \shiny-system\node\README.md
  * @Description: 
 -->
@@ -186,4 +186,224 @@ fs.stat('xxx',(err,data)=>{
 ```js
 //代码的绝对路径
 __dirname
+path.resolve(__dirname,'index.html')
+```
+
+## http
+### 请求报文
+请求行+请求头+空行+请求体
+请求行：请求方法+url+http版本号
+### 响应报文
+响应行+响应头+空行+响应体
+响应行：http版本号+响应状态码+响应状态描述
+
+响应状态码：
+1xx：信息响应
+2xx：成功响应
+3xx：重定向消息
+4xx：客户端错误响应
+5xx：服务端错误响应
+
+### ip
+32位二进制数字组成
+区域共享，家庭共享
+本地回环ip地址：127.0.0.1~127.255.255.254
+局域网ip（私网ip）：
+192.168.0.0~192.168.255.255
+172.16.0.0~172.31.255.255
+10.0.0.0~10.255.255.255
+广域网（公网ip）：除上述之外
+
+### 端口
+实现不同主机应用程序之间的通信
+
+# 创建http服务
+http协议默认端口80，https协议的默认端口443，http服务开发常用端口：3000,8080,8090,9000
+```js
+//导入http模块
+const http=require('http')
+const url=reuire('url')
+//创建服务对象
+const server=http.createServer((request,response)=>{
+    //解决中文乱码
+    //request.method
+    //request.url
+    //request.httpVersion
+    //request.headers
+    let res=url.parse(request.url)
+    let body=''
+    let url=new URL(request.url,'127.0.0.1')
+    url.searchParams.get(xxx)
+    request.on('data',chunk=>{
+        body+=chunk
+    })
+    request.on('end',()=>{
+        response.end('hello')
+    })
+    response.setHeader('content-type','text/html;charset=utf-8')
+    response.end('hello')//设置响应体
+})
+//监听端口，启动服务
+server.listen(9999,()=>{
+
+})
+```
+## 设置响应
+```js
+const http=require('http')
+const server=http.createServer((request,response)=>{
+    response.statusCode=200//设置状态码
+    response.statusMessage=''//设置描述
+    response.setHeader('content-type','text/html;charset=utf-8')//设置响应头
+    response.write()//设置响应体
+    response.end()
+})
+```
+# express框架
+```js
+const express=require('express')
+const app=express()
+app.get('xxx',(req,res)=>{
+    //重定向
+    res.redirect()
+    //下载
+    res.download()
+    //json
+    res.json()
+    //响应文件内容
+    res.sendFile()
+})
+```
+## 静态资源中间件
+```js
+const express=require('express')
+const app=express()
+app.use(express.static(__dirname+'/public'))
+```
+## 获取请求体
+```js
+npm i body-parser
+```
+```js
+const express=require('express')
+const bodyParser=require('body-parser')
+//解析json格式的请求体中间件
+const jsonParser=bodyParser.json()
+const urlencodedPArser=bodyParser.urlencoded({extended:false})
+const app=express()
+app.post('/login',urlencodedPArser,(req,res)=>{
+console.log(req.body)
+})
+```
+## 防盗链
+```js
+const express=require('express')
+const app=express()
+app.use((req,res,next)=>{
+   let referer=req.get('referer')
+   if(referer){
+    let url=new URL(referer)
+    let hostname=url.hostname
+    if(hostname!=='127.0.0.1'){
+        res.status(404).send('404')
+        return
+    }
+   }
+   next() 
+})
+```
+## 路由模块化
+```js
+//homeRouter.js
+const express=require('express')
+const router=express.Router()
+router.get('/home',(req,res)=>{
+
+})
+module.exports=router
+
+//main.js
+const express=require('express')
+const homeRouter=require('xxx/homeRouter.js')
+const app=express()
+app.use(homeRouter)
+```
+## 模板引擎
+html,js分离
+```js
+npm i ejs
+```
+```js
+//基本使用
+const ejs=require('ejs')
+let china='zg'
+let result=ejs.render('love <%= china %>',{china:china})
+//列表渲染
+const list=['1','2']
+let result=ejs.render(`
+<ul>
+<% list.forEach(item=>{%>
+<li>
+<%= item %>
+</li>
+<% }) %>
+</ul>
+`,{list})
+```
+ejs文件引用
+```js
+const express=reuire('express')
+cont app=express()
+//设置模板引擎
+app.set('view engine','ejs')
+//设置模板文件存放位置
+app.set('views',path.resolve(__dirname,'./xxx'))
+app.get('/',(req,res)=>{
+    let title='xxx'
+    res.render('home',{title})
+})
+```
+## express应用程序生成器（express-generator）
+```js
+npm i -g express-generator
+```
+
+## express 处理文件
+```js
+//安装依赖
+npm i formidable
+//代码
+const formidable=require('formidable')
+router.post('/file',(req,res)=>{
+    //创建form对象
+    const form=formidable({multiples:true,
+    //设置上传文件的保存目录
+    uploadDir:__dirname+'/../public/images',
+    //保持文件后缀
+    keepExtensions:true
+    })
+    //解析请求报文
+    form.parse(req,(err,fields,files)=>{
+        if(err){
+            next(err)
+            return
+        }
+        let url='/images/'+files.portrait.newFilename
+        res.json({fields,files})
+    })
+})
+```
+## lowdb
+```js
+const low=require('lowdb')
+const FileSync=require('lowdb/adapters/FileSync')
+const adapter=new FileSync('db.json')
+const db=low(adapter)
+db.defaults({posts:[],user:{}}).write()
+db.get('posts').push(1).write()
+db.get('posts').value()
+db.get('posts').remove({}).write()
+db.get('posts').find({}).value()
+db.get('posts').find({}).assign({}).write()
+
 ```
