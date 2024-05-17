@@ -12,15 +12,23 @@
     "url": "git+https://github.com/FFSZ-5/shiny-system.git"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.24.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.5"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/FFSZ-5/shiny-system/issues"
   },
-  "homepage": "https://github.com/FFSZ-5/shiny-system#readme"
+  "homepage": "https://github.com/FFSZ-5/shiny-system#readme",
+  "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/parser": "^7.24.5",
+    "@babel/plugin-proposal-decorators": "^7.24.1",
+    "@babel/preset-env": "^7.24.5"
+  }
 }

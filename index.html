@@ -1,0 +1,333 @@
+<document width="100" fontSize="12" mode="flow">
+  <container width="100">
+    <text
+      width="100"
+      height="7"
+      fontSize="14"
+      fontWeight="bolder"
+      textAlign="center"
+      value="复旦大学附属中山医院闵行梅陇院区"
+    />
+    <text
+      width="100"
+      height="7"
+      fontSize="14"
+      fontWeight="bolder"
+      textAlign="center"
+      value="上海市老年医学中心"
+    />
+    <text
+      width="100"
+      height="7"
+      fontSize="14"
+      fontWeight="bolder"
+      textAlign="center"
+      value="门急诊转账退款申请单"
+    />
+    <line
+      x="40"
+      y="21"
+      width="1"
+      length="65"
+      direction="vertical"
+      type="solid"
+    />
+    <line
+      x="0"
+      y="21"
+      width="1"
+      length="65"
+      direction="vertical"
+      type="solid"
+    />
+    <line
+      x="99"
+      y="21"
+      width="1"
+      length="65"
+      direction="vertical"
+      type="solid"
+    />
+    <line width="1" length="99" direction="horizontal" type="solid" />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="病历号"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="lef"
+      value="{{data?.selectedRowInfo?.residentCardNo}}"
+    />
+
+    <line
+      x="0"
+      y="28"
+      width="2"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="病历号姓名"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value="{{data?.selectedRowInfo?.patientName}}"
+    />
+
+    <line
+      x="0"
+      y="34"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="结算流水号"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value="{{data?.selectedRowInfo?.residentCardNo}}"
+    />
+
+    <line
+      x="0"
+      y="41"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="退款金额"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value=""
+    />
+
+    <line
+      x="0"
+      y="46"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="退款方式"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value=""
+    />
+
+    <line
+      x="0"
+      y="53"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="收款银行卡号"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value=""
+    />
+
+    <line
+      x="0"
+      y="59"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="开户银行"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value=""
+    />
+
+    <line
+      x="0"
+      y="65"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="持卡人姓名"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value=""
+    />
+
+    <line
+      x="0"
+      y="71"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="持卡人身份证"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value=""
+    />
+
+     <line
+      x="0"
+      y="77"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+    <text
+      width="30"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="center"
+      value="经办人工号"
+    />
+    <text
+      width="50"
+      margin="1 5"
+      fontSize="12"
+      fontWeight="bolder"
+      textAlign="left"
+      value=""
+    />
+     <line
+      x="0"
+      y="84"
+      width="1"
+      length="99"
+      direction="horizontal"
+      type="solid"
+    />
+  </container>
+
+  <container margin="4 0">
+    <text
+      margin="4 0 "
+      width="100"
+      fontSize="12"
+      text
+      fontWeight="bold"
+      textAlign="left"
+      value="申请人确认："
+    />
+    <text
+      margin="4 0"
+      width="100"
+      fontSize="12"
+      text
+      fontWeight="bold"
+      textAlign="left"
+      value="申请日期："
+    />
+    <text
+      margin="4 0"
+      width="100"
+      fontSize="12"
+      text
+      fontWeight="bold"
+      textAlign="left"
+      value="审核人："
+    />
+  </container>
+</document>
