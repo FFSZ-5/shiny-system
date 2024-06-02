@@ -407,3 +407,50 @@ db.get('posts').find({}).value()
 db.get('posts').find({}).assign({}).write()
 
 ```
+## express设置cookie
+```js
+const express=require('express')
+const app=express()
+//设置cookie
+app.get('/set-cookie',(req,res)=>{
+    res.cookie('name','xxx')//关闭浏览器的时候会销毁
+    res.cookie('name','xxx',{maxAge:60*1000})//设置cookie为1分钟后过期
+})
+//删除cookie
+app.get('/remove-cookie',(req,res)=>{
+    res.clearCookie('name')
+})
+```
+## 获取cookie
+```js
+npm i -S cookie-parser
+
+const express=require('express')
+const cookieParser=require('cookie-parser')
+const app=express()
+app.use(cookieParser())
+app.get('/remove-cookie',(req,res)=>{
+    console.log(req.cookies)    
+})
+```
+## express 设置session
+```js
+npm i -S express-session
+npm i -S connect-mongo
+const session =require('express-session')
+const MongoStore=require('connect-mongo')
+const app=express()
+app.use(session({
+    name:'sid',//设置cookie的name，默认值是connect.sid
+    secret:'xxx',//参与加密的字符串，又称签名
+    saveUninitialized:false,//是否为每次请求都设置一个cookie
+    resave:true,//是否每次请求时重新保存session
+    store:MongoStore.create({
+        mongoUrl:''
+    }),
+    cookie:{
+        httpOnly:true,
+        maxAge:1000*300
+    }
+}))
+```
